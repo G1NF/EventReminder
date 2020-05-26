@@ -1,0 +1,58 @@
+package com.ciwan.eventreminder.activities;
+
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+
+import app.ciwan.events.R;
+
+
+public class LicencesActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.licenses);
+
+        TextView mTexts = findViewById(R.id.licenses_text_view);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/SourceLight.ttf");
+        mTexts.setTypeface(tf);
+
+        // Setup Toolbar
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(R.string.title_activity_licenses);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher);
+
+        // Return to the previous activity on back press
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+    // To prevent crashes due to pressing physical menu buttons
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            // return true to prevent further propagation of the key event
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    // On clicking the back button
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+}
